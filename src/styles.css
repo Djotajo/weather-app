@@ -69,5 +69,37 @@ footer p {
 
 .sunny {
   /* background-image: url(`.dist/sunny.jpeg`); */
-  background-color: yellow;
+  background-size: cover;
+}
+
+header {
+  /* position: absolute;
+  top: 0; */
+  margin-top: 5vh;
+  box-sizing: border-box;
+  display: flex;
+  justify-content: center;
+  /* align-items: flex-end; */
+  align-items: center;
+  flex-direction: column;
+  /* margin-left: auto;
+  margin-right: auto; */
+  gap: 1vh;
+  color: white;
+  background-color: transparent;
+  overflow: hidden;
+}
+
+input,
+button {
+  border-radius: 5px;
+}
+
+#vrijeme {
+  height: 500px;
+  width: 500px;
+}
+
+#vrijeme p {
+  margin: 0;
 }

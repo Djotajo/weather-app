@@ -14,23 +14,50 @@ export default async function getWeather(city = "belgrade") {
     // home.innerHTML = responseJson.current.cloud;
     // console.log(responseJson.current.cloud);
     const weather = document.createElement("div");
-    let cityName = document.createElement("p");
-    cityName.innerHTML = await responseJson.location.name;
+    let location = document.createElement("p");
+    location.innerHTML = `${await responseJson.location
+      .name}, ${await responseJson.location.country}`;
 
-    let country = document.createElement("p");
-    country.innerHTML = await responseJson.location.country;
+    let temperature = document.createElement("p");
+    temperature.innerHTML = `${await responseJson.current.temp_c}°C`;
 
-    weather.appendChild(cityName);
-    weather.appendChild(country);
+    let condition = document.createElement("p");
+    condition.innerHTML = await responseJson.current.condition.text;
+
+    let conditionImg = document.createElement("img");
+    conditionImg.src = await responseJson.current.condition.icon;
+
+    let chanceOfRain = document.createElement("p");
+    chanceOfRain.innerHTML = `Chance of rain - ${await responseJson.forecast
+      .forecastday[0].day.daily_chance_of_rain}%`;
+
+    weather.appendChild(location);
+    weather.appendChild(temperature);
+    weather.appendChild(condition);
+    weather.appendChild(conditionImg);
+    weather.appendChild(chanceOfRain);
 
     home.classList.add("sunny");
     home.style.backgroundImage = `url(${sunny})`;
+
+    let units = "metric";
     // console.log(responseJson.current.wind_mph);
     // console.log(responseJson.current.wind_mph);
+    let items = ["humidity", "is_day", "uv"];
+    let metricItems = ["temp_c", "feelslike_c", "wind_kph"];
+    let imperialItems = ["temp_f", "feelslike_f", "wind_mph"];
     for (const [key, value] of Object.entries(responseJson.current)) {
-      const item = document.createElement("p");
-      item.innerHTML = `${key}: ${value}`;
-      weather.appendChild(item);
+      if (items.includes(key)) {
+        const item = document.createElement("p");
+        item.innerHTML = `${key}: ${value}`;
+        weather.appendChild(item);
+      }
+      if (units === "metric" && metricItems.includes(key)) {
+        const item = document.createElement("p");
+        item.innerHTML = `${key}: ${value}`;
+        weather.appendChild(item);
+      }
+
       // console.log(`${key}: ${value}`);
     }
     if ((await responseJson.current.condition.text).includes("rain")) {
@@ -51,3 +78,16 @@ export default async function getWeather(city = "belgrade") {
     console.log(error);
   }
 }
+
+// humidity;
+// is_day;
+// forecast.forecastday[0].day.daily_chance_of_rain;
+// uv;
+
+// temp_c;
+// feelslike_c;
+// wind_kph;
+
+// current.temp_f;
+// current.current.feelslike_f;
+// current.wind_mph;

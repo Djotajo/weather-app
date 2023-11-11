@@ -76,6 +76,7 @@ header {
   /* position: absolute;
   top: 0; */
   margin-top: 5vh;
+  margin-bottom: 5vh;
   box-sizing: border-box;
   display: flex;
   justify-content: center;
@@ -96,10 +97,23 @@ button {
 }
 
 #vrijeme {
+  display: flex;
   height: 500px;
   width: 500px;
+  margin-left: auto;
+  margin-right: auto;
+  justify-content: center;
+  align-items: center;
 }
 
 #vrijeme p {
   margin: 0;
+}
+
+#vrijeme div {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-content: center;
+  text-align: center;
 }

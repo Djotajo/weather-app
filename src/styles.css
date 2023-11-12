@@ -98,8 +98,8 @@ button {
 
 #vrijeme {
   display: flex;
-  height: 500px;
-  width: 500px;
+  /* height: 500px;
+  width: 500px; */
   margin-left: auto;
   margin-right: auto;
   justify-content: center;
@@ -110,10 +110,78 @@ button {
   margin: 0;
 }
 
-#vrijeme div {
+#vrijeme {
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-content: center;
   text-align: center;
+}
+
+#vrijeme img {
+  width: 100px;
+  height: 100px;
+  align-self: center;
+}
+
+#current {
+  display: grid;
+  grid-template-columns: 300px 300px;
+  grid-template-rows: 120px 120px 120px;
+  gap: 2vh;
+  text-align: center;
+  background-color: rgba(0, 0, 0, 0.1);
+  justify-content: center;
+}
+
+#current div {
+  font-weight: 600;
+  display: flex;
+  flex-direction: column;
+  gap: 1vh;
+  font-size: 1em;
+}
+
+#current span {
+  display: block;
+  color: rgba(0, 0, 0, 0.5);
+  font-weight: 400;
+}
+
+#location-info :nth-child(1) {
+  font-size: 2em;
+}
+#location-info :nth-child(2) {
+  font-size: 1em;
+}
+
+#hourly {
+  margin-top: 5vh;
+  display: flex;
+  font-size: 2em;
+  gap: 3vw;
+  justify-content: center;
+  align-items: center;
+}
+
+#hourly span {
+  display: block;
+  color: rgba(0, 0, 0, 0.5);
+  font-weight: 400;
+  align-items: center;
+}
+
+#hourly img {
+  display: block;
+  align-self: center;
+}
+
+#hourly div {
+  display: flex;
+  flex-direction: column;
+}
+
+#hourly svg {
+  max-height: 1em;
+  max-width: 1em;
 }

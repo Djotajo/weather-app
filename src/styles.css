@@ -13,6 +13,7 @@ body {
   font-size: 1vw;
   position: relative;
   overflow: hidden;
+  box-shadow: inset 0 0 0 1000px rgba(255, 255, 255, 0.1);
 }
 
 /* button {
@@ -73,18 +74,14 @@ footer p {
 }
 
 header {
-  /* position: absolute;
-  top: 0; */
+  position: relative;
   margin-top: 5vh;
   margin-bottom: 5vh;
   box-sizing: border-box;
   display: flex;
   justify-content: center;
-  /* align-items: flex-end; */
   align-items: center;
   flex-direction: column;
-  /* margin-left: auto;
-  margin-right: auto; */
   gap: 1vh;
   color: white;
   background-color: transparent;
@@ -93,7 +90,24 @@ header {
 
 input,
 button {
-  border-radius: 5px;
+  border-radius: 10px;
+}
+
+input {
+  box-sizing: border-box;
+  background-image: url("https://upload.wikimedia.org/wikipedia/commons/5/55/Magnifying_glass_icon.svg");
+  background-size: 1em 1em;
+  background-repeat: no-repeat;
+  background-position: right;
+  padding: 5px;
+  border: none;
+  opacity: 0.7;
+}
+
+input:focus {
+  opacity: 1;
+  outline: none;
+  box-shadow: 5px 5px 5px black;
 }
 
 #vrijeme {
@@ -126,26 +140,28 @@ button {
 
 #current {
   display: grid;
-  grid-template-columns: 300px 300px;
+  grid-template-columns: 30% 30%;
   grid-template-rows: 120px 120px 120px;
-  gap: 2vh;
+  gap: 3vh;
   text-align: center;
-  background-color: rgba(0, 0, 0, 0.1);
+  /* background-color: rgba(255, 255, 255, 0.1); */
   justify-content: center;
+  /* font-size: 2em; */
 }
 
 #current div {
   font-weight: 600;
   display: flex;
   flex-direction: column;
-  gap: 1vh;
-  font-size: 1em;
+  /* gap: 1vh; */
+  font-size: 2em;
 }
 
 #current span {
   display: block;
   color: rgba(0, 0, 0, 0.5);
   font-weight: 400;
+  /* font-size: 1em; */
 }
 
 #location-info :nth-child(1) {
@@ -156,32 +172,136 @@ button {
 }
 
 #hourly {
-  margin-top: 5vh;
+  margin-top: 10vh;
   display: flex;
   font-size: 2em;
   gap: 3vw;
   justify-content: center;
   align-items: center;
+  /* background-color: rgba(255, 255, 255, 0.1); */
 }
 
 #hourly span {
-  display: block;
-  color: rgba(0, 0, 0, 0.5);
-  font-weight: 400;
-  align-items: center;
+  display: flex;
+  color: rgba(0, 0, 0, 1);
+}
+
+#hourly div :nth-child(odd) {
+  color: rgba(0, 0, 0, 0.7);
 }
 
 #hourly img {
   display: block;
   align-self: center;
+  max-height: 3em;
+  max-width: 3em;
 }
 
 #hourly div {
   display: flex;
   flex-direction: column;
+  justify-content: center;
+  gap: 1vh;
+  flex-grow: 0;
+  flex-wrap: wrap;
+  align-items: center;
 }
 
 #hourly svg {
   max-height: 1em;
   max-width: 1em;
+  display: inline-block;
+  opacity: 0.7;
+}
+
+#units-div {
+  position: absolute;
+  right: 10%;
+  top: 0px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1vh;
+  color: red;
+}
+
+#units-div p {
+  margin: 0;
+}
+
+/* position: relative;
+margin-top: 5vh;
+margin-bottom: 5vh;
+box-sizing: border-box;
+display: flex;
+justify-content: center;
+align-items: center;
+flex-direction: column;
+gap: 1vh;
+color: white;
+background-color: transparent;
+overflow: hidden; */
+
+/* switch */
+/* The switch - the box around the slider */
+.switch {
+  position: relative;
+  display: inline-block;
+  width: 84px;
+  height: 34px;
+}
+
+/* Hide default HTML checkbox */
+.switch input {
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+
+/* The slider */
+.slider {
+  position: absolute;
+  cursor: pointer;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: red;
+  -webkit-transition: 0.4s;
+  transition: 0.4s;
+}
+
+.slider:before {
+  position: absolute;
+  content: "";
+  height: 26px;
+  width: 26px;
+  left: 4px;
+  bottom: 4px;
+  background-color: white;
+  -webkit-transition: 0.4s;
+  transition: 0.4s;
+}
+
+input:checked + .slider {
+  background-color: #2196f3;
+}
+
+input:focus + .slider {
+  box-shadow: 0 0 1px #2196f3;
+}
+
+input:checked + .slider:before {
+  -webkit-transform: translateX(50px);
+  -ms-transform: translateX(50px);
+  transform: translateX(50px);
+}
+
+/* Rounded sliders */
+.slider.round {
+  border-radius: 34px;
+}
+
+.slider.round:before {
+  border-radius: 50%;
 }

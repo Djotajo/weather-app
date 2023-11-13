@@ -1,4 +1,5 @@
 import getWeather from "./getweather";
+import searchFunction from "./searchFunction";
 
 export default function searchBar() {
   const search = document.createElement("input");
@@ -11,6 +12,11 @@ export default function searchBar() {
   //   search.addEventListener("submit", function () {
   //     getWeather(search.value);
   //   });
+  search.addEventListener("keypress", function (e) {
+    if (e.key === "Enter") {
+      searchFunction();
+    }
+  });
 
   return search;
 }

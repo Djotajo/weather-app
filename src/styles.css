@@ -145,13 +145,13 @@ input:focus {
 
 #current {
   display: grid;
-  grid-template-columns: 30% 30%;
+  grid-template-columns: 40% 40%;
   grid-template-rows: 120px 120px 120px;
-  gap: 3vh;
+  gap: 5vh;
   text-align: center;
   /* background-color: rgba(255, 255, 255, 0.1); */
   justify-content: center;
-  /* font-size: 2em; */
+  font-size: 1em;
 }
 
 #current div {
@@ -213,8 +213,8 @@ input:focus {
 }
 
 #hourly svg {
-  max-height: 1em;
-  max-width: 1em;
+  height: 1em;
+  width: 1em;
   display: inline-block;
   opacity: 0.7;
 }

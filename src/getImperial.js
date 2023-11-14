@@ -1,5 +1,6 @@
 export default async function getImperial(responseJson) {
-  const currentWeather = document.createElement("div");
+  const currentWeather = document.querySelector("#current");
+  currentWeather.innerHTML = "";
 
   let temperature = document.createElement("div");
   temperature.innerHTML = `<span>Temperature</span> ${await responseJson.current
@@ -38,8 +39,4 @@ export default async function getImperial(responseJson) {
   currentWeather.appendChild(chanceOfRain);
   currentWeather.appendChild(wind);
   currentWeather.appendChild(humidity);
-
-  currentWeather.setAttribute("id", "current");
-
-  return currentWeather;
 }

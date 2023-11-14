@@ -13,11 +13,7 @@ export default function units() {
   unitsSpan.classList.add("round");
   const unit = document.createElement("p");
   unit.setAttribute("id", "unit-p");
-  unit.innerHTML = "Metric";
-
-  unitsInput.addEventListener("click", function () {
-    changeUnits();
-  });
+  //   unit.innerHTML = "Metric";
 
   unitsButtonLabel.appendChild(unitsInput);
   unitsButtonLabel.appendChild(unitsSpan);

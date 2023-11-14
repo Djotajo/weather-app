@@ -1,19 +1,10 @@
 export default async function getMetric(responseJson) {
-  const currentWeather = document.createElement("div");
-  console.log("Djordje");
-  console.log(responseJson);
+  const currentWeather = document.querySelector("#current");
+  currentWeather.innerHTML = "";
 
   let temperature = document.createElement("div");
   temperature.innerHTML = `<span>Temperature</span> ${await responseJson.current
     .temp_c}°C`;
-
-  //   if (unitInfo.innerHTML === "Metric") {
-  //     temperature.innerHTML = `<span>Temperature</span> ${await responseJson
-  //       .current.temp_c}°C`;
-  //   } else {
-  //     temperature.innerHTML = `<span>Temperature</span> ${await responseJson
-  //       .current.temp_f}°F`;
-  //   }
 
   let feelsLike = document.createElement("div");
   feelsLike.innerHTML = `<span>Feels like</span> ${await responseJson.current
@@ -48,8 +39,4 @@ export default async function getMetric(responseJson) {
   currentWeather.appendChild(chanceOfRain);
   currentWeather.appendChild(wind);
   currentWeather.appendChild(humidity);
-
-  currentWeather.setAttribute("id", "current");
-
-  return currentWeather;
 }

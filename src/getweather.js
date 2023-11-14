@@ -2,6 +2,8 @@ import sunny from "../assets/sunny.jpg";
 import night from "../assets/night.jpg";
 import rain from "../assets/rain.jpg";
 import snow from "../assets/snow.jpg";
+import getMetric from "./getMetric";
+import getImperial from "./getImperial";
 
 export default async function getWeather(city = "banja_luka") {
   try {
@@ -11,11 +13,11 @@ export default async function getWeather(city = "banja_luka") {
     const responseJson = await response.json();
     console.log(responseJson);
     const home = document.querySelector("#content");
-    // home.innerHTML = responseJson.current.cloud;
-    // console.log(responseJson.current.cloud);
     const weather = document.createElement("div");
     const locationInfo = document.createElement("div");
-    const currentWeather = document.createElement("div");
+    // const currentWeather = document.createElement("div");
+
+    const unitInfo = document.querySelector("#unit-p");
 
     let location = document.createElement("div");
     location.innerHTML = `${await responseJson.location
@@ -26,51 +28,18 @@ export default async function getWeather(city = "banja_luka") {
       responseJson.location.localtime
     ).toLocaleString()}`;
 
-    let temperature = document.createElement("div");
-    temperature.innerHTML = `<span>Temperature</span> ${await responseJson
-      .current.temp_c}°C`;
-
-    let feelsLike = document.createElement("div");
-    feelsLike.innerHTML = `<span>Feels like</span> ${await responseJson.current
-      .feelslike_c}°C`;
-
-    let condition = document.createElement("div");
-
-    let conditionText = document.createElement("span");
-    conditionText.innerHTML = await responseJson.current.condition.text;
-
-    let conditionImg = document.createElement("img");
-    conditionImg.src = await responseJson.current.condition.icon;
-
-    condition.appendChild(conditionText);
-    condition.appendChild(conditionImg);
-
-    let chanceOfRain = document.createElement("div");
-    chanceOfRain.innerHTML = `<span>Chance of rain</span> ${await responseJson
-      .forecast.forecastday[0].day.daily_chance_of_rain}%`;
-
-    let wind = document.createElement("div");
-    wind.innerHTML = `<span>Wind</span> ${await responseJson.current
-      .wind_kph}km/h`;
-
-    let humidity = document.createElement("div");
-    humidity.innerHTML = `<span>Humidity</span> ${await responseJson.current
-      .humidity}%`;
-
     locationInfo.appendChild(location);
     locationInfo.appendChild(localTime);
-    currentWeather.appendChild(temperature);
-    currentWeather.appendChild(feelsLike);
-    currentWeather.appendChild(condition);
-    currentWeather.appendChild(chanceOfRain);
-    currentWeather.appendChild(wind);
-    currentWeather.appendChild(humidity);
 
-    currentWeather.setAttribute("id", "current");
     locationInfo.setAttribute("id", "location-info");
 
     weather.appendChild(locationInfo);
-    weather.appendChild(currentWeather);
+
+    if (unitInfo.innerHTML === "Metric") {
+      weather.appendChild(await getMetric(responseJson));
+    } else {
+      weather.appendChild(await getImperial(responseJson));
+    }
 
     const hourly = document.createElement("div");
     let hourlyCast = [];
@@ -107,24 +76,6 @@ export default async function getWeather(city = "banja_luka") {
     hourly.setAttribute("id", "hourly");
     weather.appendChild(hourly);
 
-    // let units = "metric";
-    // let items = ["humidity", "is_day", "uv"];
-    // let metricItems = ["temp_c", "feelslike_c", "wind_kph"];
-    // let imperialItems = ["temp_f", "feelslike_f", "wind_mph"];
-    // for (const [key, value] of Object.entries(responseJson.current)) {
-    //   if (items.includes(key)) {
-    //     const item = document.createElement("p");
-    //     item.innerHTML = `${key}: ${value}`;
-    //     weather.appendChild(item);
-    //   }
-    //   if (units === "metric" && metricItems.includes(key)) {
-    //     const item = document.createElement("p");
-    //     item.innerHTML = `${key}: ${value}`;
-    //     weather.appendChild(item);
-    //   }
-
-    //   // console.log(`${key}: ${value}`);
-    // }
     if ((await responseJson.current.condition.text).includes("rain")) {
       home.style.backgroundImage = `url(${rain})`;
     } else if ((await responseJson.current.condition.text).includes("snow")) {
@@ -133,26 +84,8 @@ export default async function getWeather(city = "banja_luka") {
       home.style.backgroundImage = `url(${night})`;
     }
 
-    // if ((await responseJson.current.cloud) >= 0) {
-    //   //   console.log(weather);
-    // }
-    // console.log(weather);
     return weather;
-    // return responseJson;
   } catch (error) {
     console.log(error);
   }
 }
-
-// humidity;
-// is_day;
-// forecast.forecastday[0].day.daily_chance_of_rain;
-// uv;
-
-// temp_c;
-// feelslike_c;
-// wind_kph;
-
-// current.temp_f;
-// current.current.feelslike_f;
-// current.wind_mph;

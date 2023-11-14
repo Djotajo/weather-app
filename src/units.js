@@ -1,3 +1,5 @@
+import changeUnits from "./changeUnits";
+
 export default function units() {
   const unitsDiv = document.createElement("div");
   unitsDiv.setAttribute("id", "units-div");
@@ -5,11 +7,17 @@ export default function units() {
   unitsButtonLabel.classList.add("switch");
   const unitsInput = document.createElement("input");
   unitsInput.setAttribute("type", "checkbox");
+  unitsInput.setAttribute("id", "checkbox");
   const unitsSpan = document.createElement("span");
   unitsSpan.classList.add("slider");
   unitsSpan.classList.add("round");
   const unit = document.createElement("p");
+  unit.setAttribute("id", "unit-p");
   unit.innerHTML = "Metric";
+
+  unitsInput.addEventListener("click", function () {
+    changeUnits();
+  });
 
   unitsButtonLabel.appendChild(unitsInput);
   unitsButtonLabel.appendChild(unitsSpan);

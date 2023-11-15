@@ -1,5 +1,3 @@
-import gitLogo from "../assets/github-mark-white.png";
-
 export default function footer() {
   const footer = document.createElement("footer");
 

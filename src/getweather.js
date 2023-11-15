@@ -10,11 +10,6 @@ import getHourly from "./getHourly";
 
 export default async function getWeather(city = "banja_luka") {
   try {
-    // const response = await fetch(
-    //   `https://api.weatherapi.com/v1/forecast.json?key=02e62c481b0f42a08d755821231011&q=${city}&days=3`
-    // );
-    // const responseJson = await response.json();
-
     const responseJson = await getData(city);
 
     console.log(responseJson);
@@ -26,27 +21,11 @@ export default async function getWeather(city = "banja_luka") {
 
     getLocation(responseJson);
 
-    // getMetric(responseJson);
-
     if (unitInfo.innerHTML === "Metric") {
       await getMetric(responseJson);
     } else {
       await getImperial(responseJson);
     }
-
-    // unitButton.addEventListener("click", async function () {
-    //   console.log("sranje radi");
-    //   if (unitInfo.innerHTML === "Metric") {
-    //     await getImperial(responseJson);
-    //     await getHourly(responseJson);
-    //     unitInfo.innerHTML = "Imperial";
-    //   } else {
-    //     await getMetric(responseJson);
-    //     await getHourly(responseJson);
-    //     unitInfo.innerHTML = "Metric";
-    //   }
-    // });
-    // unitButton.removeEventListener("click");
 
     getHourly(responseJson);
 
@@ -63,6 +42,7 @@ export default async function getWeather(city = "banja_luka") {
 
     return weather;
   } catch (error) {
-    console.log(error);
+    alert("Invalid location, returning default");
+    getWeather();
   }
 }

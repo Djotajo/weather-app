@@ -26,16 +26,18 @@ export default function units() {
   unitsInput.addEventListener("click", async function () {
     console.log("sranje radi");
     if (unit.innerHTML === "Metric") {
-      getImperial(await getData(searchValue));
+      getImperial(await getData(searchValue()));
+      console.log(await searchValue());
       // await getHourly(await getData(searchFunction()));
       unit.innerHTML = "Imperial";
     } else {
-      console.log(await searchFunction());
-      getMetric(await getData(searchValue));
+      console.log(await searchValue());
+      getMetric(await getData(searchValue()));
 
       // await getHourly(await getData(searchFunction()));
       unit.innerHTML = "Metric";
     }
+    getHourly(await getData(searchValue()));
   });
 
   unitsButtonLabel.appendChild(unitsInput);

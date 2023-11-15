@@ -8,25 +8,11 @@ body {
 #content {
   width: 100%;
   min-height: 100vh;
-  /* display: grid;
-  grid-template-rows: 95% 5%; */
   font-size: 1vw;
   position: relative;
   overflow: hidden;
   box-shadow: inset 0 0 0 1000px rgba(255, 255, 255, 0.1);
 }
-
-/* button {
-  padding: 10px;
-  font-size: 2rem;
-  background-color: transparent;
-  border: none;
-  color: white;
-}
-
-button:hover {
-  color: red;
-} */
 
 footer > img {
   max-width: 5vw;
@@ -74,7 +60,6 @@ footer p:hover {
 }
 
 .sunny {
-  /* background-image: url(`.dist/sunny.jpeg`); */
   background-size: cover;
 }
 
@@ -117,8 +102,6 @@ input:focus {
 
 #vrijeme {
   display: flex;
-  /* height: 500px;
-  width: 500px; */
   margin-left: auto;
   margin-right: auto;
   justify-content: center;
@@ -145,11 +128,10 @@ input:focus {
 
 #current {
   display: grid;
-  grid-template-columns: 40% 40%;
+  grid-template-columns: 1fr 1fr;
   grid-template-rows: 120px 120px 120px;
   gap: 5vh;
   text-align: center;
-  /* background-color: rgba(255, 255, 255, 0.1); */
   justify-content: center;
   font-size: 1em;
 }
@@ -158,7 +140,7 @@ input:focus {
   font-weight: 600;
   display: flex;
   flex-direction: column;
-  /* gap: 1vh; */
+  gap: 1vh;
   font-size: 2em;
 }
 
@@ -178,17 +160,22 @@ input:focus {
 
 #hourly {
   margin-top: 10vh;
-  display: flex;
   font-size: 2em;
-  gap: 3vw;
+  gap: 5vw;
   justify-content: center;
   align-items: center;
-  /* background-color: rgba(255, 255, 255, 0.1); */
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr;
 }
 
 #hourly span {
   display: flex;
   color: rgba(0, 0, 0, 1);
+}
+
+#hourly div :nth-child(1) {
+  color: rgba(0, 0, 0, 0.7);
+  text-decoration: underline;
 }
 
 #hourly div :nth-child(odd) {
@@ -208,8 +195,10 @@ input:focus {
   justify-content: center;
   gap: 1vh;
   flex-grow: 0;
+  flex-shrink: 1;
   flex-wrap: wrap;
   align-items: center;
+  min-width: 7vw;
 }
 
 #hourly svg {
@@ -228,24 +217,12 @@ input:focus {
   align-items: center;
   gap: 1vh;
   color: red;
+  width: 5vw;
 }
 
 #units-div p {
   margin: 0;
 }
-
-/* position: relative;
-margin-top: 5vh;
-margin-bottom: 5vh;
-box-sizing: border-box;
-display: flex;
-justify-content: center;
-align-items: center;
-flex-direction: column;
-gap: 1vh;
-color: white;
-background-color: transparent;
-overflow: hidden; */
 
 /* switch */
 /* The switch - the box around the slider */

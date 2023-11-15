@@ -2,6 +2,7 @@ import sunny from "../assets/sunny.jpg";
 import night from "../assets/night.jpg";
 import rain from "../assets/rain.jpg";
 import snow from "../assets/snow.jpg";
+import getData from "./getData";
 import getLocation from "./getLocation";
 import getMetric from "./getMetric";
 import getImperial from "./getImperial";
@@ -9,10 +10,13 @@ import getHourly from "./getHourly";
 
 export default async function getWeather(city = "banja_luka") {
   try {
-    const response = await fetch(
-      `https://api.weatherapi.com/v1/forecast.json?key=02e62c481b0f42a08d755821231011&q=${city}&days=3`
-    );
-    const responseJson = await response.json();
+    // const response = await fetch(
+    //   `https://api.weatherapi.com/v1/forecast.json?key=02e62c481b0f42a08d755821231011&q=${city}&days=3`
+    // );
+    // const responseJson = await response.json();
+
+    const responseJson = await getData(city);
+
     console.log(responseJson);
     const home = document.querySelector("#content");
     const weather = document.createElement("div");
@@ -30,20 +34,18 @@ export default async function getWeather(city = "banja_luka") {
       await getImperial(responseJson);
     }
 
-    unitButton.addEventListener("click", async function () {
-      console.log("sranje radi");
-      console.log(Event);
-      console.log(Event.currentTarget);
-      if (unitInfo.innerHTML === "Metric") {
-        await getImperial(responseJson);
-        await getHourly(responseJson);
-        unitInfo.innerHTML = "Imperial";
-      } else {
-        await getMetric(responseJson);
-        await getHourly(responseJson);
-        unitInfo.innerHTML = "Metric";
-      }
-    });
+    // unitButton.addEventListener("click", async function () {
+    //   console.log("sranje radi");
+    //   if (unitInfo.innerHTML === "Metric") {
+    //     await getImperial(responseJson);
+    //     await getHourly(responseJson);
+    //     unitInfo.innerHTML = "Imperial";
+    //   } else {
+    //     await getMetric(responseJson);
+    //     await getHourly(responseJson);
+    //     unitInfo.innerHTML = "Metric";
+    //   }
+    // });
     // unitButton.removeEventListener("click");
 
     getHourly(responseJson);
@@ -58,8 +60,6 @@ export default async function getWeather(city = "banja_luka") {
     } else if ((await responseJson.current.is_day) == 0) {
       home.style.backgroundImage = `url(${night})`;
     }
-
-    weather.classList.add("fuckingWeather");
 
     return weather;
   } catch (error) {

@@ -1,4 +1,9 @@
-import changeUnits from "./changeUnits";
+import getMetric from "./getMetric";
+import getImperial from "./getImperial";
+import getHourly from "./getHourly";
+import getData from "./getData";
+import searchFunction from "./searchFunction";
+import searchValue from "./searchValue";
 
 export default function units() {
   const unitsDiv = document.createElement("div");
@@ -13,7 +18,25 @@ export default function units() {
   unitsSpan.classList.add("round");
   const unit = document.createElement("p");
   unit.setAttribute("id", "unit-p");
-  //   unit.innerHTML = "Metric";
+  unit.innerHTML = "Metric";
+
+  // unit = document.querySelector("#unit-p");
+  // unitsInput = document.querySelector("#checkbox");
+
+  unitsInput.addEventListener("click", async function () {
+    console.log("sranje radi");
+    if (unit.innerHTML === "Metric") {
+      getImperial(await getData(searchValue));
+      // await getHourly(await getData(searchFunction()));
+      unit.innerHTML = "Imperial";
+    } else {
+      console.log(await searchFunction());
+      getMetric(await getData(searchValue));
+
+      // await getHourly(await getData(searchFunction()));
+      unit.innerHTML = "Metric";
+    }
+  });
 
   unitsButtonLabel.appendChild(unitsInput);
   unitsButtonLabel.appendChild(unitsSpan);

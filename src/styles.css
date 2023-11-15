@@ -1,8 +1,8 @@
 html,
 body {
   margin: 0px;
-  height: 100%;
-  overflow: hidden;
+  height: 100vh;
+  overflow: auto;
 }
 
 #content {
@@ -10,7 +10,7 @@ body {
   min-height: 100vh;
   font-size: 1vw;
   position: relative;
-  overflow: hidden;
+  overflow: auto;
   box-shadow: inset 0 0 0 1000px rgba(255, 255, 255, 0.1);
 }
 
